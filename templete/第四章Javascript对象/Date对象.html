@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Date对象</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	
+	var dtNow = new Date();
+	document.writeln(dtNow + "<br />");
+	var dtMilliseconds = new Date(5999000920);
+	document.writeln(dtMilliseconds + "<br />");
+	
+	var dtNow = new Date();
+	dtNow.setDate(18);
+	dtNow.setMonth(10);
+	dtNow.setFullYear(1954);
+	dtNow.setHours(7);
+	dtNow.setMinutes(2);
+	
+	document.writeln(dtNow.toDateString() + "<br />");
+	document.writeln(dtNow.toTimeString() + "<br />");
+	document.writeln(dtNow.toLocaleDateString() + "<br />");
+	document.writeln(dtNow.toLocaleTimeString() + "<br />");
+	document.writeln(dtNow.toGMTString() + "<br />");
+	document.writeln(dtNow.toUTCString());
+//]]>
+	
+</script>
+
+</body>
+</html>

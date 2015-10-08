@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>图像滚动</title>
+
+<style type="text/css">
+    #block{
+        width: 400px;
+    }
+</style>
+
+<script type="text/javascript">
+//<![CDATA]
+    
+    var currentPhoto = 0;
+    var pics = new Array();
+    
+    window.onload=function(){
+        for(var i = 0; i < 5; i++){
+            pics[i] = new Image();
+        }
+        
+        pics[0].src = "images/fig01.jpg";
+        pics[1].src = "images/fig02.jpg";
+        pics[2].src = "images/fig03.jpg";
+        pics[3].src = "images/fig04.jpg";
+        pics[4].src = "images/fig05.jpg";
+        
+        document.getElementById("next").onclick = nextPic;
+        document.getElementById("prev").onclick = prevPic;
+        var tmOut = setInterval("nextPic()", 2000);
+        console.log(tmOut);
+    }
+
+    function changePhoto(photo){
+        document.images[0].src = pics[photo].src;
+    }
+
+    function nextPic(){
+        currentPhoto++;
+        if(currentPhoto < pics.length){
+            changePhoto(currentPhoto);
+        }
+        else{
+            currentPhoto = 0;
+            changePhoto(currentPhoto);
+        }
+    }
+    
+    function prevPic(){
+        if (currentPhoto > 0){
+            currentPhoto--;
+            changePhoto(currentPhoto);
+        }
+        else{
+            currentPhoto = 4;
+            changePhoto(currentPhoto);
+        }
+    }
+    
+
+//]]>
+</script>
+</head>
+<body>
+    <div id="next"><span>Next</span></div>
+    <img src="images/fig01.jpg" />
+    <div id="prev"><span>Prev</span></div>
+</body>
+</html>

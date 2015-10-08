@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>文本框,文本区域,密码框和隐藏表单字段的输入元素</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	function catchEvent(eventObj, event, eventHandler){	//捕获事件的函数
+		if(eventObj.addEventListener){
+			eventObj.addEventListener(event, eventHandler, false);
+		}
+		else if(eventObj.attachEvent){
+			var evnt = "on" + event;
+			eventObj.attachEvent(evnt, eventHandler);
+		}
+	}
+	
+	function cancelEvent(evnt){	//取消事件的函数
+		var event = evnt ? evnt : window.Event;
+		
+		if(event.preventDefault){
+			event.preventDefault();
+			event.stopPropagation();
+		}
+		else{
+			event.returnValue = false;
+			event.cancelBubble =true;
+		}
+	}
+	
+	function validateForm(evnt){
+		var strResults = "";
+		var textInputs = document.getElementById("someForm").getElementsByTagName("input");
+		
+		//遍布复选框中的每个元素
+		for(var i = 0; i < textInputs.length; i++){
+			console.log(textInputs.length);
+			if((textInputs[i].type != "submit")){
+				strResults += textInputs[i].value;
+			}
+		
+		}
+		console.log(strResults);
+		document.getElementById("text4").value = strResults;
+		console.log(evnt);
+		cancelEvent(evnt);
+		
+	}
+	
+	function setupEvents(evnt){
+		console.log(evnt);
+		catchEvent(document.getElementById("someForm"), "submit", validateForm);
+	}
+	
+	catchEvent(window,"load",setupEvents);
+	
+//]]>
+</script>
+</head>
+<body>
+	<form id="someForm" action="">
+		<p>
+			<input type="text" name="text1" /><br />
+			<input type="password" name="text2" /><br />	
+			<input type="hidden" name="text3" value="hidden value" />
+			<textarea name="text4" id="text4" cols="50" rows="10" />The text area
+			</textarea>
+			<input type="submit" value="Submit" />
+		</p>
+	</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>递归函数</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	
+	var addNumbers = function sumNumbers(numArray,indexVal,resultArray){	//创建函数字面量
+		//递归测试
+		if(indexVal == numArray.length)
+			return resultArray;
+		//执行数值累加
+		resultArray[0] += Number(numArray[indexVal]);
+		//执行字符串连接
+		if(resultArray[1].length > 0){
+			resultArray[1] += " and ";
+		}
+		resultArray[1] += numArray[indexVal].toString();
+	
+		//递增索引
+		indexVal++;
+	
+		//再次返回该函数，并返回执行结果
+		return sumNumbers(numArray,indexVal,resultArray);
+	}
+	
+	//创建数值数组和结果数组
+	var numArray = ['1','35.4','-14','44','0.5'];
+	var resultArray = new Array(0,'');
+	
+	//调用该函数
+	var result = addNumbers(numArray,0,resultArray);
+	
+	//输出结果
+	document.writeln(result[0] + "<br />");
+	document.writeln(result[1]);
+	
+//]]>
+	
+</script>
+<p>some content</p>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>DOM Level 2事件模型（事件监听器）</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	function casccadeDown(evnt){
+		alert("Capturing: " + this);
+	}
+	
+	function bubbleUp(evnt){
+		alert("Bubbling: " + this);
+	}
+	
+	window.onload = setup;
+	
+	function setup(evnt){
+		
+		//事件捕获
+		document.addEventListener('click',casccadeDown,true);
+		document.forms[0].addEventListener('click',casccadeDown,true);
+		document.forms[0].elements[0].addEventListener('click',casccadeDown,true);
+		
+		//事件冒泡
+		document.addEventListener('click',bubbleUp,false);
+		document.addEventListener('click',bubbleUp,false);
+		document.addEventListener('click',bubbleUp,false);
+		
+	}
+//]]>
+</script>
+</head>
+<body>
+	<form style="background-color: #f00; width: 100px; height: 100px; padding: 10px" action="">
+		<p>
+			<input type="submit" value="Submit" /><br />
+		</p>
+	</form>
+</body>
+</html>

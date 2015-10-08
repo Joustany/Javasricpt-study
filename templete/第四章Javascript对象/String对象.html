@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>String对象的实例方法</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	var sObj = new String();
+	var txt = sObj.concat("This is"," a ","new string");
+	document.writeln(txt + "<br />");
+	
+	var sObj2 = new String("This is a test string");
+	var stxt = sObj2.charAt(3);
+	document.writeln(stxt + "<br />");
+
+	var stxt1 = "This is a test string";
+	var sstxt = stxt1.substr(5,8);		//返回"is a tes"
+	var sstxt2 = stxt1.substring(5,8);	//返回"is"
+	var sstxt2 = stxt1.substring(4,1);
+	var sstxt3 = stxt1.slice(4,1);
+	document.writeln(sstxt2 + "<br />");   //返回his
+	document.writeln(sstxt3 + "<br />");	//返回空字符串
+	var iVal = stxt1.indexOf("t");
+	document.writeln(iVal + "<br />");
+	
+	function splitString(){
+		var inputSring = new String('username=447478047@qq.com,pwd=12345,tel=15773728972,age=22');
+		var arrayTokens = inputSring.split(',',3);
+		
+		//按逗号分隔字符串
+		for(var i = 0; i < arrayTokens.length; i++){
+			document.writeln(arrayTokens[i] + "<br />");
+			
+			var newTokens = arrayTokens[i].split('=');
+			document.writeln(newTokens[1] + "<br />");
+		}
+	}
+	
+	var someString = new String("Mix of upper and lower")
+	var newString = someString.toUpperCase();	//将所有字符转换成大写
+	
+	var s = String.fromCharCode(344,99,99,76);
+	document.writeln(s);	//返回编码对应的字符串
+//]]>
+	
+</script>
+	 <botton onclick="splitString()">split分割，用于处理表单</botton>
+</body>
+</html>

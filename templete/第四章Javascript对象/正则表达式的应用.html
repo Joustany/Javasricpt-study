@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>正则表达式的应用</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+
+	var regExp = /\s\*/g;	// \s表示空格,\*表示一般的*,而不是匹配符
+	var str = "This *is *a *test *string";
+	var resultString = str.replace(regExp,'-');
+	document.writeln(resultString);
+	
+	document.writeln("<p>" + "(*)表示星号前面的字符出现0次或多次，(+)表示+号前面的字符出现1次或多次，(?)表示?前面的字符出现0次或1次，(.)表示.前面的字符只出现一次" + "</p>");
+	
+	var regExp = /(".*")/g;
+	var test = '"one" or this is also a "test"';
+	var resultString = test.match(regExp);
+	document.writeln(resultString);	//返回"one" or this is also a "test"
+	var regExp = /(".*?")/g;
+	var resultString = test.match(regExp);
+	document.writeln(resultString[0]);	//返回"one"
+	
+	//var regExp = /:\D*\s\d+\s\d+/;
+	var regExp = /:[^0-9]*\s[0-9]+\s[0-9]+/;	//脱字符(^)
+	var str = "This is a date: March 12 2014";
+	var resultString = str.match(regExp);
+	document.writeln("Date" + resultString);
+	
+	//脱字符(^)在方括号外使用是匹配行首的任意序列，($)匹配任何行尾的任意序列
+	var regExp = /^The/i;
+	var str = "This is the Javascript example";
+	var resultString = str.match(regExp);
+	document.writeln(resultString);
+	var regExp = /Example$/i;
+	var resultString = str.match(regExp);
+	document.writeln(resultString);
+	var regExp = /The$/im;
+	var str = "This is the\nJavascript example";
+	var resultString = str.match(regExp);
+	document.writeln(resultString);
+	var rgExp = /(^\D*[0-9])/;	//返回的是This is fun 0,This is fun 0
+	//var rgExp = /^\D*([0-9])/;	//返回的是This is fun 0,0
+	var str = "This is fun 01 stuff";
+	var resultArray = str.match(rgExp);
+	document.writeln(resultArray);
+	//返回数组第一个的值为匹配值，第二个为regExp中()里的值，$1,$2...$9都可以表示对应顺序()里的值
+	//	\w   匹配任何数字字母字符，等效[A-Za-z0-9_]
+	//  \W   匹配任何非数字字母字符
+	//	a|b|c	表示可选的匹配
+	//	s{2}	表示可以匹配两个s字符
+//]]>
+	
+</script>
+	 <p>贪婪匹配(.*)和延迟匹配(.*?)</p>
+</body>
+</html>

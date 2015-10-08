@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>正则表达式和RegExp</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	var serachPattern = new RegExp('s+');
+	var serachPattern = /s+/;
+	
+	var re = /Javascript rules/;
+	var str = "Javascript rules";
+	if(re.test(str)) document.writeln("I guess it does rule" + "<br />");
+	var re = /Javascript rules/i;
+	var str = "javascript rules";
+	if(re.test(str)) document.writeln("I guess it does rule" + "<br />");
+	var re = /(ab)+(c+d)/ig;
+	var str = "abcdbktjgabbbccd$%jkAbcdd(a)a&(ab*)";
+	var resultArray = re.exec(str);
+	while(resultArray){
+		document.writeln(resultArray[0]);
+		document.writeln("next match starts at " + re.lastIndex + "<br />");
+		resultArray = re.exec(str);
+	}
+	
+//]]>
+	
+</script>
+	 
+</body>
+</html>

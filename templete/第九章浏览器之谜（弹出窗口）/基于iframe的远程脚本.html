@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/Xhtml11/DTD/xhtml11-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>基于iframe的远程脚本</title>
+<script type="text/javascript">
+//<![CDATA]
+
+    function catchEvent(eventObj, event, eventHandler){
+        if(eventObj.addEventListener){
+            eventObj.addEventListener(event, eventHandler, false);
+        }
+        else if(event.attachEvent){
+            event = "on" + event;
+            eventObj.attachEvent(event, eventHandler);
+        }
+    }
+
+    catchEvent(window, "load", function(){
+        catchEvent(document.forms[0], "click", colorChange);
+    });
+
+    //使用iframe的远程脚本
+    function colorChange(){
+        var colors = document.forms[0].color;
+        var result = document.getElementById('result');
+        console.log(colors.length);
+        for(var i = 0; i < colors.length; i++){
+            if(colors[i].checked){
+                console.log(colors[i].value);
+                var myFrame = document.getElementById("myFrame");
+                myFrame.contentWindow.location.href="service.php?color=" + colors[i].value;
+                myFrame.onload=function(){
+                    result.innerHTML = myFrame.contentWindow.docment.getElementById("val2").innerHTML;
+                }
+            }
+        }
+    }
+//]]>
+</script>
+</head>
+<body>
+    <div>
+        <form action="">
+            <p>
+                <input type="radio" name="color" value="red" />Red<br />
+                <input type="radio" name="color" value="blue" />Blue
+            </p>
+        </form>
+    </div>
+    <iframe name="myFrame" id="myFrame" style="width:0; height:0; border:0;" src="service.php"></iframe>
+    <div id="result">
+
+    </div>
+</body>
+</html>

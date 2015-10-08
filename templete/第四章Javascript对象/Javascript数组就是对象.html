@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Javascript数组就是对象</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	
+	var fruitArray = new Array ('apple','peach','orange','lemon','lime','cherry');
+	var removd = fruitArray.splice(2,2,'melon','banana');
+	document.writeln(removd + "<br />");
+	document.writeln(fruitArray + "<br />");
+	var newFruit = fruitArray.slice(1,3);	//1指从数组下标为1的位置开始，3值到数组下标为3的位置结束，不返回下标为3里的值
+	document.writeln(newFruit + "<br />");
+	
+	var newFruit = fruitArray.concat(removd);
+	document.writeln(newFruit + "<br />");	//直接输出数组将被转换成字符串，赋给另一个变量则不再是数组变量
+	
+	var string = fruitArray.join("。");	//join用来改变分割符，并将数组生成为新的字符串
+	document.writeln(string + "<br />");
+	
+	var reverseString = fruitArray.reverse();
+	document.writeln(reverseString + "<br />");
+//]]>
+	
+</script>
+
+</body>
+</html>

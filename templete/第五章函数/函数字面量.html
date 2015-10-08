@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>匿名函数</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	
+	var str = "Learning Java";
+	document.writeln(str.replace(/Java/,"Javascript"));
+	document.writeln("Learning Java".replace(/Java/,"Javascript"));
+	
+	//将第三个参数作为函数来调用，这个参数是一个函数字面量
+	function funcObject(x,y,z){
+		document.writeln(z(x,y));
+	}
+	
+	funcObject(3,4,function(x,y){ return x*y;});
+	
+	funcObject("4",2,function(x,y){ return x+y;});
+	
+	var func = function multiply(x,y){
+		return x * y;
+	}	//multiply(x,y)只能在这个函数内部使用，用来实现递归函数
+//]]>
+	
+</script>
+
+</body>
+</html>

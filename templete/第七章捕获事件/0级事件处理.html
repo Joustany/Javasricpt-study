@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>0级事件处理</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	function helloMsg(){
+		var helloString = "hello there";
+		document.writeln(helloString);
+		helloTwice();
+	}
+	
+	function helloTwice(){
+		var helloString = "hi again";
+		document.writeln(helloString);
+	}
+	
+	window.onload = helloTwice();//这个事件处理程序不会执行
+	
+	function doSomething(){
+		//完成某些操作(比如检测到某个表单字段中输入的值是无效的)
+		return false;//这样就不会继续将表单提交给服务器
+	}
+//]]>
+</script>
+</head>
+<body onload="helloMsg();">
+
+
+	
+
+</body>
+</html>

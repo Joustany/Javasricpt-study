@@ -1,0 +1,13 @@
+#div1{
+    overflow: hidden;
+    position: relative;
+    top: 100px;
+    left: 100px;
+    border: 5px solid #000;
+    width: 400px;
+    height: 200px;
+}
+
+img{
+    border: 1px solid #000;
+}

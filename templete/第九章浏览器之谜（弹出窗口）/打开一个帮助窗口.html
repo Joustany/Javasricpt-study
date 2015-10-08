@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>打开一个帮助窗口</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	function catchEvent(eventObj, event, eventHandler){	//捕获事件的函数
+		if(eventObj.addEventListener){
+			eventObj.addEventListener(event, eventHandler, false);
+		}
+		else if(eventObj.attachEvent){
+			var evnt = "on" + event;
+			eventObj.attachEvent(evnt, eventHandler);
+		}
+	}
+	
+	function cancelEvent(evnt){	//取消事件的函数
+		var event = evnt ? evnt : window.Event;
+		
+		if(event.preventDefault){
+			event.preventDefault();
+			event.stopPropagation();
+		}
+		else{
+			event.returnValue = false;
+			event.cancelBubble =true;
+		}
+	}
+	
+	function setupEvents(evnt){
+		console.log(evnt);
+		document.forms[0].elements[0].focus();
+		
+		var evtOject = document.getElementById("panicbutton");
+		catchEvent(evtOject,"click",openHelp);
+	}
+	
+	catchEvent(window,"load",setupEvents);
+	
+	function openHelp(x){
+		var x = x ? x : window.Event;
+		console.log(x);
+		var optionString = "width=200,height=150,menubar=no,toolbar=no,scrollbars=no,location=no,resizeable=no";
+		
+		var helpWindow = window.open("help.html","test",optionString);
+		helpWindow.focus();
+		helpWindow.moveTo(x.screenX,x.screenY);
+		return false;
+	}
+	
+	
+//]]>
+</script>
+</head>
+<body>
+	<form id="currentForm" action="">
+		<p>
+			Your name: <input type="text" size="50" />
+		</p>
+	</form>
+	<div id="panicbutton" style="width:200px;height:40px;background-color:#f00;padding:5px;margin-left:50px;margin-top:200px">
+		<p>
+			Click for Help
+		</p>
+	</div>
+</body>
+</html>

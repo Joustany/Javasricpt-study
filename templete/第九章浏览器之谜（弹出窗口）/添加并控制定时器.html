@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>添加并控制定时器</title>
+
+<style type="text/css">
+    #block{
+        width: 400px;
+    }
+</style>
+
+<script type="text/javascript">
+//<![CDATA]
+    var flag = 0;
+
+    window.onload=function(){
+        document.getElementById("block").style.backgroundColor="#ffffff";
+        setTimeout("colorFlash(255)",300);
+    }
+
+    function colorFlash(newColor){
+        var hexVal = newColor.toString(16);
+        //确保长度为2
+        if(hexVal.length < 2){
+            hexVal= "0" + hexVal;
+        }
+
+        var colorString = "#ff" + hexVal + "ff";
+        var blockDiv = document.getElementById("block");
+        blockDiv.style.backgroundColor = colorString;
+        if(!flag){
+            if(newColor > 0){
+                newColor-=5;
+                setTimeout("colorFlash(" + newColor + ")", 50);
+            }
+            else{
+                console.log(newColor);
+                flag = 1;
+                colorFlash(newColor);
+            }
+        }
+        else{
+            if(newColor < 255){
+                newColor+=5;
+                setTimeout("colorFlash(" + newColor + ")", 50);
+            }
+            else{
+                console.log(newColor);
+                flag = 0;
+                colorFlash(newColor);
+            }
+        }
+    }
+//]]>
+</script>
+</head>
+<body>
+    <div id="block">
+        <h1>Hello</h1>
+    </div>
+</body>
+</html>

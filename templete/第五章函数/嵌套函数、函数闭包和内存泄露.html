@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>嵌套函数、函数闭包和内存泄露</title>
+
+</head>
+<body>
+
+<script type="text/javascript">
+//<![CDATA]
+	
+	//外部函数
+	function outerFunc(base){
+		var punc = "!";
+		
+		//返回内部函数
+		return function(ext){
+			return base + ext + punc;
+		}
+	}
+	
+	//创建对内部函数的访问
+	var baseString = outerFunc("Hello");
+
+	//内部函数仍然有权限访问外部函数的参数
+	var newString = baseString("World");
+
+	//再次调用
+	var notherString = baseString("Reader");
+	alert(newString);
+
+	alert(notherString);
+
+	//创建另一个内部函数实例
+	var anotherBase = outerFunc("Hiya, Hey ");
+
+	//另一个本地字符串
+	var lastString = anotherBase("you");
+
+	alert(newString);
+	alert(lastString);
+	
+	//什么是函数闭包：当一个内部函数是外部应用程序的返回值，并赋给一个外部变量时，内部函数的作用域就将附加到外部函数上，然后在附加到主调应用程序中，这样才能保证内部函数和外部函数参数和变量的完整性。返回在其他函数中以内部对象形式创建的一个函数字面量，然后将其赋值给主调应用程序中的一个变量，这就是Javascript中的闭包。它将引入一个作用域链的概念，它是确保应用程序在本地能够正常工作所需的数据
+	
+	//如果在老版本的IE中，因为循环引用带了的意外闭包，并且是在Javascript和DOM对象之间引用的，那么已分配的内存将永远不会释放，造成内存泄露。
+//]]>
+	
+</script>
+</body>
+</html>

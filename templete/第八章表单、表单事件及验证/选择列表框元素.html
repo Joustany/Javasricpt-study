@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>选择列表框元素</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	function catchEvent(eventObj, event, eventHandler){	//捕获事件的函数
+		if(eventObj.addEventListener){
+			eventObj.addEventListener(event, eventHandler, false);
+		}
+		else if(eventObj.attachEvent){
+			var evnt = "on" + event;
+			eventObj.attachEvent(evnt, eventHandler);
+		}
+	}
+	
+	function formFunctiong(evnt){	//取消事件的函数
+		var event = evnt ? evnt : window.Event;
+		
+		function cancelEvent(event){
+			if(event.preventDefault){
+				event.preventDefault();
+				event.stopPropagation();
+			}
+			else{
+				event.returnValue = false;
+				event.cancelBubble =true;
+			}
+		}
+	}
+	
+	function checkForm(){
+		var opts = document.getElementById("someForm").selectOpts.options;
+		
+		for(var i = 0; i < opts.length; i++){
+			if(opts[i].selected){
+				alert(opts[i].text + " " + opts[i].value);
+			}
+		}
+		return false;
+	}
+	
+	function setupEvents(){
+		catchEvent(document.getElementById("someForm"), "submit", checkForm);
+	}
+	
+	catchEvent(window,"load",setupEvents);
+	
+//]]>
+</script>
+</head>
+<body>
+	<form id="someForm" action="">
+		<p>
+			<select id="selectOpts" multiple="multiple">
+				<option value="Opt1">Option One</option>
+				<option value="Opt2">Option Two</option>
+				<option value="Opt3">Option Three</option>
+			</select>
+			<input type="submit" value="Submit">
+		</p>
+	</form>
+</body>
+</html>

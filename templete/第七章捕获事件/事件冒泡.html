@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/Xhtml111/DTD/xhtml111.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>事件冒泡</title>
+<script type="text/javascript">
+//<![CDATA]
+	
+	//为div元素设置事件处理程序
+	window.onload = setupEvents;
+	
+	function setupEvents(){
+		//第一个事件处理程序
+		document.getElementById("first").onmousedown = function(){
+			console.log("first element event");
+		}
+	
+		//第二个事件处理程序
+		document.getElementById("second").onmousedown = function(){
+			console.log("second element event");
+		}
+		//栈顶（即最外层）事件处理程序
+		document.onmousedown = function(){
+			console.log("document event");
+		}
+		
+		
+		//如何取消事件冒泡机制，IE用Event.cancelBubble属性，其他用Event.stopPropagation方法
+		function stopEvent(evnt){
+			if(evnt.stopPropagation){
+				evnt.stopPropagation();
+			}
+			else{
+				evnt.camcelBubble = true;
+			}
+		}
+
+		document.getElementById("first").onmousedown = function(evnt){
+			var theEvent = evnt ? evnt : window.Event;
+			console.log("first element event");
+			stopEvent(theEvent);
+		}
+	}
+//]]>
+</script>
+</head>
+<body>
+	<div id="first" style="padding: 20px; background-color: #ff0; width: 150px;">
+		<div id="second" style="background-color: #f00; width: 100px; height: 100px; border: 1px dashed #000;">
+		</div>
+	</div>
+</body>
+</html>

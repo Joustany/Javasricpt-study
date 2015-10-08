@@ -1,0 +1,43 @@
+div{
+    padding: 0 5px;
+}
+
+#nav{
+    background-color: #ccc;
+    width: 100px;
+    cursor: pointer;
+}
+
+#div1{
+    background-color: #00f;
+    color: #fff;
+    font-size: larger;
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    left: -410px;
+    top: -400px;
+}
+
+#div2{
+    background-color: #ff0;
+    color: #000;
+    font-size: larger;
+    position: fixed;
+    width: 400px;
+    height: 200px;
+    left: -410px;
+    top: -400px;
+    z-index: 4;
+}
+
+#div3{
+    background-color: #f00;
+    color: #fff;
+    font-size: larger;
+    position: fixed;
+    width: 400px;
+    height: 200px;
+    left: -410px;
+    top: -400px;
+}
